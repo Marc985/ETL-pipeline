@@ -14,10 +14,16 @@ base_params={
 }
 
 response=requests.get(base_url,params=base_params).json()
-columns = ["id", "main", "description", "icon"]
-print(response["weather"])
-new_yourk_df=pd.DataFrame(response["weather"],columns)
-new_yourk_df.to_csv("city/new_york_weather.csv",index=False)
+weather=response["weather"]
 
-new_york_weather=pd.read_csv("city/new_york_weather.csv")
-print(new_york_weather)
+new_yourk_df=pd.DataFrame(weather)
+path="city/new_york_weather.csv"
+
+if os.path.exists(path):
+   existing_weather_df=pd.read_csv(path)
+   new_yourk_df=pd.concat([existing_weather_df,new_yourk_df])
+   new_yourk_df.to_csv(path,index=False)
+else:
+    new_yourk_df.to_csv(path,index=False)
+print(new_yourk_df)
+
