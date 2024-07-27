@@ -1,6 +1,5 @@
 id,main,description,icon,city
-802,Clouds,scattered clouds,03n,New York
-501,Rain,moderate rain,10d,Paris
-310,Drizzle,light intensity drizzle rain,09d,Paris
+800,Clear,clear sky,01n,New York
 701,Mist,mist,50d,Paris
-804,Clouds,overcast clouds,04d,Tokyo
+501,Rain,moderate rain,10d,Paris
+803,Clouds,broken clouds,04d,Tokyo
