@@ -44,7 +44,7 @@ transform=PythonOperator(
 )
 load=PythonOperator(
     task_id="load",
-    python_callable=load
+    python_callable=load,
     dag=dag
 )
 # set the dependencies
