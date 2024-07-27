@@ -2,6 +2,8 @@ import requests
 import os
 from dotenv import load_dotenv
 import pandas as pd
+from pathlib import Path
+from extract_utils import extract
 
 load_dotenv()
 
@@ -15,11 +17,6 @@ base_params={
 response=requests.get(base_url,params=base_params).json()
 weather=response["weather"]
 tokyo_df=pd.DataFrame(weather)
-path="city/tokyo_weather.csv"
+path=Path("../dags/city/tokyo_weather.csv")
 
-if os.path.exists(path):
-   existing_weather_df=pd.read_csv(path)
-   new_yourk_df=pd.concat([existing_weather_df,tokyo_df])
-   new_yourk_df.to_csv(path,index=False)
-else:
-    tokyo_df.to_csv(path,index=False)
+extract(path,tokyo_df)
