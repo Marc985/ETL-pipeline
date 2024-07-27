@@ -16,5 +16,6 @@ base_params={
 response=requests.get(base_url,params=base_params).json()
 weather=response["weather"]
 paris_df=pd.DataFrame(weather)
+print(weather)
 path="../dags/city/paris_weather.csv"
 extract(path,paris_df)
